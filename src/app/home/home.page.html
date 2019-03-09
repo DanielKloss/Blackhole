@@ -1,0 +1,249 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title class="text"> <img class="logo" src="assets/icon/blackhole.png" />Blackhole</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="menu-buttons">
+        <button [ngClass]="{'hidden':this.ai == true}" (click)="changeAi('AI')" class="menu-button"
+            [disabled]="!isEnabled">
+            <ion-icon name="people"></ion-icon>
+        </button>
+        <button [ngClass]="{'hidden':this.ai == false}" (click)="changeAi('another human')" class="menu-button"
+            [disabled]="!isEnabled">
+            <ion-icon name="logo-android"></ion-icon>
+        </button>
+        <button (click)="undo()" [disabled]="!canUndo || !isEnabled" class="menu-button">
+            <ion-icon name="undo"></ion-icon>
+        </button>
+        <button (click)="restart()" [disabled]="!canUndo || !isEnabled" class="menu-button">
+            <ion-icon name="refresh"></ion-icon>
+        </button>
+        <button (click)="navigate('help')" class="menu-button" [disabled]="!isEnabled">
+            <ion-icon name="help"></ion-icon>
+        </button>
+        <button (click)="navigate('about')" class="menu-button" [disabled]="!isEnabled">
+            <ion-icon name="information"></ion-icon>
+        </button>
+    </div>
+    <ion-grid>
+        <!--Row 1-->
+        <ion-row>
+            <ion-col>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+            <ion-col size="2">
+                <button class="space-button" (click)="addPiece(0)" [@piece]="this.game.board.spaces[0].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[0].containingPiece != undefined && this.game.board.spaces[0].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[0].containingPiece != undefined && this.game.board.spaces[0].containingPiece.player == 1}">
+                    {{this.game.board.spaces[0].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+        </ion-row>
+        <!--Row 2-->
+        <ion-row>
+            <ion-col>
+            </ion-col>
+            <ion-col size="2">
+                <button class="space-button" (click)="addPiece(1)" [@piece]="this.game.board.spaces[1].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[1].containingPiece != undefined && this.game.board.spaces[1].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[1].containingPiece != undefined && this.game.board.spaces[1].containingPiece.player == 1}">
+                    {{this.game.board.spaces[1].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col size="2">
+                <button class="space-button" (click)="addPiece(2)" [@piece]="this.game.board.spaces[2].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[2].containingPiece != undefined && this.game.board.spaces[2].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[2].containingPiece != undefined && this.game.board.spaces[2].containingPiece.player == 1}">
+                    {{this.game.board.spaces[2].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+        </ion-row>
+        <!--Row 3-->
+        <ion-row>
+            <ion-col>
+            </ion-col>
+            <ion-col size="2">
+                <button class="space-button" (click)="addPiece(3)" [@piece]="this.game.board.spaces[3].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[3].containingPiece != undefined && this.game.board.spaces[3].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[3].containingPiece != undefined && this.game.board.spaces[3].containingPiece.player == 1}">
+                    {{this.game.board.spaces[3].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col size="2">
+                <button class="space-button" (click)="addPiece(4)" [@piece]="this.game.board.spaces[4].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[4].containingPiece != undefined && this.game.board.spaces[4].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[4].containingPiece != undefined && this.game.board.spaces[4].containingPiece.player == 1}">
+                    {{this.game.board.spaces[4].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col size="2">
+                <button class="space-button" (click)="addPiece(5)" [@piece]="this.game.board.spaces[5].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[5].containingPiece != undefined && this.game.board.spaces[5].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[5].containingPiece != undefined && this.game.board.spaces[5].containingPiece.player == 1}">
+                    {{this.game.board.spaces[5].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+        </ion-row>
+        <!--Row 4-->
+        <ion-row>
+            <ion-col>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(6)" [@piece]="this.game.board.spaces[6].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[6].containingPiece != undefined && this.game.board.spaces[6].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[6].containingPiece != undefined && this.game.board.spaces[6].containingPiece.player == 1}">
+                    {{this.game.board.spaces[6].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(7)" [@piece]="this.game.board.spaces[7].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[7].containingPiece != undefined && this.game.board.spaces[7].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[7].containingPiece != undefined && this.game.board.spaces[7].containingPiece.player == 1}">
+                    {{this.game.board.spaces[7].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(8)" [@piece]="this.game.board.spaces[8].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[8].containingPiece != undefined && this.game.board.spaces[8].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[8].containingPiece != undefined && this.game.board.spaces[8].containingPiece.player == 1}">
+                    {{this.game.board.spaces[8].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(9)" [@piece]="this.game.board.spaces[9].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[9].containingPiece != undefined && this.game.board.spaces[9].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[9].containingPiece != undefined && this.game.board.spaces[9].containingPiece.player == 1}">
+                    {{this.game.board.spaces[9].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+        </ion-row>
+        <!--Row 5-->
+        <ion-row>
+            <ion-col>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(10)" [@piece]="this.game.board.spaces[10].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[10].containingPiece != undefined && this.game.board.spaces[10].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[10].containingPiece != undefined && this.game.board.spaces[10].containingPiece.player == 1}">
+                    {{this.game.board.spaces[10].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(11)" [@piece]="this.game.board.spaces[11].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[11].containingPiece != undefined && this.game.board.spaces[11].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[11].containingPiece != undefined && this.game.board.spaces[11].containingPiece.player == 1}">
+                    {{this.game.board.spaces[11].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(12)" [@piece]="this.game.board.spaces[12].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[12].containingPiece != undefined && this.game.board.spaces[12].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[12].containingPiece != undefined && this.game.board.spaces[12].containingPiece.player == 1}">
+                    {{this.game.board.spaces[12].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(13)" [@piece]="this.game.board.spaces[13].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[13].containingPiece != undefined && this.game.board.spaces[13].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[13].containingPiece != undefined && this.game.board.spaces[13].containingPiece.player == 1}">
+                    {{this.game.board.spaces[13].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(14)" [@piece]="this.game.board.spaces[14].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[14].containingPiece != undefined && this.game.board.spaces[14].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[14].containingPiece != undefined && this.game.board.spaces[14].containingPiece.player == 1}">
+                    {{this.game.board.spaces[14].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+        </ion-row>
+        <!--Row 6-->
+        <ion-row>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(15)" [@piece]="this.game.board.spaces[15].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[15].containingPiece != undefined && this.game.board.spaces[15].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[15].containingPiece != undefined && this.game.board.spaces[15].containingPiece.player == 1}">
+                    {{this.game.board.spaces[15].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(16)" [@piece]="this.game.board.spaces[16].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[16].containingPiece != undefined && this.game.board.spaces[16].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[16].containingPiece != undefined && this.game.board.spaces[16].containingPiece.player == 1}">
+                    {{this.game.board.spaces[16].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(17)" [@piece]="this.game.board.spaces[17].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[17].containingPiece != undefined && this.game.board.spaces[17].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[17].containingPiece != undefined && this.game.board.spaces[17].containingPiece.player == 1}">
+                    {{this.game.board.spaces[17].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(18)" [@piece]="this.game.board.spaces[18].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[18].containingPiece != undefined && this.game.board.spaces[18].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[18].containingPiece != undefined && this.game.board.spaces[18].containingPiece.player == 1}">
+                    {{this.game.board.spaces[18].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(19)" [@piece]="this.game.board.spaces[19].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[19].containingPiece != undefined && this.game.board.spaces[19].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[19].containingPiece != undefined && this.game.board.spaces[19].containingPiece.player == 1}">
+                    {{this.game.board.spaces[19].containingPiece?.value}}
+                </button>
+            </ion-col>
+            <ion-col text-center size="2">
+                <button class="space-button" (click)="addPiece(20)" [@piece]="this.game.board.spaces[20].animationState"
+                    [disabled]="!isEnabled"
+                    [ngClass]="{'filled-space-button-player-one':this.game.board.spaces[20].containingPiece != undefined && this.game.board.spaces[20].containingPiece.player == 0,
+                                    'filled-space-button-player-two':this.game.board.spaces[20].containingPiece != undefined && this.game.board.spaces[20].containingPiece.player == 1}">
+                    {{this.game.board.spaces[20].containingPiece?.value}}
+                </button>
+            </ion-col>
+        </ion-row>
+        <!--Next Piece Row-->
+        <ion-row justify-content-center>
+            <button class="piece-button"
+                [ngClass]="{'filled-space-button-player-one':this.game.pieces[0]?.player == 0, 'filled-space-button-player-two':this.game.pieces[0]?.player == 1}">
+                {{this.game.pieces[0]?.value}}
+            </button>
+        </ion-row>
+    </ion-grid>
+</ion-content>

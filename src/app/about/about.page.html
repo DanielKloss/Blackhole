@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title class="text">ABOUT</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list lines="none">
+        <ion-item>
+            <ion-thumbnail>
+                <img src="assets/icon/blackhole.png" />
+            </ion-thumbnail>
+            <ion-label style="margin-left:10px">
+                <h2 class="text">Blackhole</h2>
+                <p class="text">{{versionNumber}}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label text-wrap text-center class="text">Blackhole is a strategy game designed by <a href="https://en.wikipedia.org/wiki/David_J._Bodycombe">David Bodycombe</a> and broadcast on Youtube by <a href="https://www.youtube.com/channel/UCBa659QWEk1AI4Tg--mrJ2A">Tom Scott</a>.</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label text-wrap text-center class="text">Thank you for downloading my app, I hope you find it useful and enjoyable. Please let me know what you think, or suggest future improvements, by clicking the buttons below.</ion-label>
+        </ion-item>
+        <ion-button class="text" *ngIf="platformIsBrowser == false" expand="full" size="large" color="light" margin="50" (click)="rateAndReview()">Rate and Review</ion-button>
+    </ion-list>

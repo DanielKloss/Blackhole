@@ -1,0 +1,7 @@
+{
+  "name": "blackhole",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

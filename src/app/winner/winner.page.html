@@ -1,0 +1,41 @@
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button class="final-score filled-final-score-player-one">{{game.players[0].score}}</button>
+            </ion-col>
+            <ion-col>
+                <button class="final-score filled-final-score-player-two">{{game.players[1].score}}</button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="winner" [ngClass]="{'hidden': this.game.players[0].isWinner != true}">
+                WINNER
+            </ion-col>
+            <ion-col class="winner" [ngClass]="{'hidden': this.game.players[1].isWinner != true}">
+                WINNER
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="winner" [ngClass]="{'hidden': this.game.isDraw == false}">
+                DRAW
+            </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 20px; margin-bottom: 20px;">
+            <ion-col>
+                <div class="horizontal-line"></div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col *ngFor="let scoringPiece of game.board.scoringPieces">
+                <button class="space-button" [ngClass]="{'filled-space-button-player-one': scoringPiece.player == 0,
+                                                         'filled-space-button-player-two': scoringPiece.player == 1}">
+                    {{scoringPiece.value}}
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <button class="menu-button" (click)="reset()">
+        <ion-icon name="Refresh"></ion-icon>
+    </button>
+</ion-content>

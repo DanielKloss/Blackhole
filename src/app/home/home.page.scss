@@ -1,0 +1,67 @@
+.text {
+    font-family: 'audiowide';
+}
+
+.hidden {
+    display: none !important;
+}
+
+.space-button {
+    display: block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 3px solid black;
+    background-color: white;
+    font-family: 'Audiowide';
+}
+
+.filled-space-button-player-one {
+    color: white;
+    font-size: large;
+    background-color: red;
+}
+
+.filled-space-button-player-two {
+    color: white;
+    font-size: large;
+    background-color: blue;
+}
+
+.piece-button {
+    display: block;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 0px solid black;
+    color: white;
+    font-size: large;
+    font-family: 'Audiowide';
+}
+
+.menu-buttons {
+    display: grid;
+    position: fixed;
+    z-index: 100;
+}
+
+.menu-button {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    font-size: x-large;
+    padding: 0px;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
+    outline: none !important;
+}
+
+.logo {
+    width: 30px;
+    margin-right: 10px;
+    vertical-align: middle;
+}

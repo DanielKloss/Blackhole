@@ -1,0 +1,78 @@
+.final-score {
+    display: block;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: white;
+    color: white;
+    font-size: xx-large;
+    font-family: 'Audiowide';
+    font-weight: bolder;
+}
+
+.filled-final-score-player-one {
+    background-color: red;
+}
+
+.filled-final-score-player-two {
+    background-color: blue;
+}
+
+.space-button {
+    display: block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 3px solid black;
+    background-color: white;
+    color: white;
+    font-size: large;
+    font-family: 'Audiowide';
+}
+
+.filled-space-button-player-one {
+    background-color: red;
+}
+
+.filled-space-button-player-two {
+    background-color: blue;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.winner {
+    font-family: 'Audiowide';
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+.menu-button {
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    font-size: 50px;
+    padding: 0px;
+    font-family: 'Audiowide';
+    font-weight: bolder;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ion-grid {
+    border: 10px solid black;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+ion-col {
+    text-align: -webkit-center;
+}
+
+.horizontal-line {
+    width: 90%;
+    border-top: 5px solid black;
+}
